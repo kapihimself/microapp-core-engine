@@ -29,3 +29,42 @@ Every AI generation must perfectly match this structure to prevent crashes:
     }
   ]
 }
+
+{
+  "siteMeta": {
+    "title": "...",
+    "designSystem": {
+      "style": "neo-brutalism", 
+      "colorTone": "high_contrast", 
+      "palette": { "primary": "#FE5000", "background": "#F0EFEA", "text": "#1A1A1A" },
+      "typography": "space_grotesk" 
+    }
+  },
+  "layout": [
+    {
+      "section": "1_Hero",
+      "componentName": "HeroSplit",
+      "content": { "headline": "...", "subheadline": "...", "ctaText": "..." }
+    },
+    {
+      "section": "2_ProblemStatement",
+      "componentName": "ProblemAgitator",
+      "content": { "mainText": "...", "painPoints": ["Point 1", "Point 2", "Point 3"] }
+    },
+    {
+      "section": "3_SolutionOverview",
+      "componentName": "SolutionBento",
+      "content": { "features": [{ "title": "...", "desc": "..." }, { "title": "...", "desc": "..." }, { "title": "...", "desc": "..." }] }
+    },
+    {
+      "section": "4_SocialProof",
+      "componentName": "TrustMarqueeAndCards",
+      "content": { "partners": ["Logo1", "Logo2"], "testimonials": [{ "name": "...", "quote": "..." }, { "name": "...", "quote": "..." }] }
+    },
+    {
+      "section": "5_FinalCTA",
+      "componentName": "BottomAction",
+      "content": { "persuasiveStatement": "...", "ctaText": "..." }
+    }
+  ]
+}

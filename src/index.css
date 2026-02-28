@@ -1,54 +1,50 @@
 @import "tailwindcss";
-
-@layer base {
-  :root {
-    /* Light Mode: Warm off-white background, deep dark text, pantone orange primary */
-    --background: 48 14% 93%;
-    --foreground: 0 0% 10%;
-
-    --primary: 19 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --border: 0 0% 10%;
-    --input: 0 0% 10%;
-    --ring: 19 100% 50%;
-
-    --radius: 0.5rem;
-  }
-  .dark {
-    /* Dark Mode: Deep dark background, warm off-white text */
-    --background: 0 0% 10%;
-    --foreground: 48 14% 93%;
-
-    --primary: 19 100% 50%;
-    --primary-foreground: 0 0% 100%;
-    --border: 48 14% 93%;
-    --input: 48 14% 93%;
-    --ring: 19 100% 50%;
-  }
-}
 @theme {
-  --color-border: hsl(var(--border));
-  --color-input: hsl(var(--input));
-  --color-ring: hsl(var(--ring));
-  --color-background: hsl(var(--background));
-  --color-foreground: hsl(var(--foreground));
-
-  --color-primary: hsl(var(--primary));
-  --color-primary-foreground: hsl(var(--primary-foreground));
-
-  --radius-lg: var(--radius);
-  --radius-md: calc(var(--radius) - 2px);
-  --radius-sm: calc(var(--radius) - 4px);
+--color-background: hsl(var(--background));
+--color-foreground: hsl(var(--foreground));
+--color-primary: hsl(var(--primary));
+--color-primary-foreground: hsl(var(--primary-foreground));
+--color-border: hsl(var(--border));
+--color-input: hsl(var(--input));
+--color-ring: hsl(var(--ring));
+--radius: var(--radius);
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    background-color: hsl(var(--background));
-    color: hsl(var(--foreground));
-    font-feature-settings: "rlig" 1, "calt" 1;
-    -webkit-font-smoothing: antialiased;
-  }
+:root {
+/* Light Mode: Warm off-white background, deep dark text, pantone orange primary */
+--background: 48 14% 93%;
+--foreground: 0 0% 10%;
+--primary: 19 100% 50%;
+--primary-foreground: 0 0% 100%;
+--border: 0 0% 10%;
+--input: 0 0% 10%;
+--ring: 19 100% 50%;
+--radius: 0.5rem;
+}
+
+.dark {
+/* Dark Mode: Deep dark background, warm off-white text */
+--background: 0 0% 10%;
+--foreground: 48 14% 93%;
+--primary: 19 100% 50%;
+--primary-foreground: 0 0% 100%;
+--border: 48 14% 93%;
+--input: 48 14% 93%;
+--ring: 19 100% 50%;
+}
+}
+
+@layer base {
+* {
+border-color: var(--color-border);
+}
+body {
+background-color: var(--color-background);
+color: var(--color-foreground);
+font-feature-settings: "rlig" 1, "calt" 1;
+-webkit-font-smoothing: antialiased;
+margin: 0;
+min-height: 100vh;
+}
 }

@@ -2,6 +2,7 @@ import { HeroSection } from './components/vault/HeroSection'
 import { ProblemAgitator } from './components/vault/ProblemAgitator'
 import { SolutionBento } from './components/vault/SolutionBento'
 import { SocialProofMarquee } from './components/vault/SocialProofMarquee'
+import { BottomAction } from './components/vault/BottomAction'
 
 export default function App() {
   return (
@@ -10,6 +11,7 @@ export default function App() {
       <ProblemAgitator />
       <SolutionBento />
       <SocialProofMarquee />
+      <BottomAction />
     </div>
   )
 }

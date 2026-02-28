@@ -9,6 +9,8 @@
 --color-border: hsl(var(--border));
 --color-input: hsl(var(--input));
 --color-ring: hsl(var(--ring));
+--color-muted: hsl(var(--muted));
+--color-muted-foreground: hsl(var(--muted-foreground));
 --radius: var(--radius);
 
 --font-sans: 'Space Grotesk', ui-sans-serif, system-ui, sans-serif;
@@ -45,6 +47,8 @@
 --border: 0 0% 10%;
 --input: 0 0% 10%;
 --ring: 19 100% 50%;
+--muted: 0 0% 90%;
+--muted-foreground: 0 0% 40%;
 --radius: 0.5rem;
 }
 
@@ -57,6 +61,8 @@
 --border: 48 14% 93%;
 --input: 48 14% 93%;
 --ring: 19 100% 50%;
+--muted: 0 0% 15%;
+--muted-foreground: 0 0% 60%;
 }
 }
 

@@ -1,16 +1,11 @@
 import { motion } from "framer-motion"
-
-interface HeroSectionProps {
-  headline?: string
-  subheadline?: string
-  ctaText?: string
-}
+import type { HeroProps } from "../../lib/types"
 
 export function HeroSection({
-  headline = "The Ultimate Microapp Engine",
-  subheadline = "Build dynamic, polymorphic AI-generated applications with absolute precision and bulletproof design.",
-  ctaText = "Start Building",
-}: HeroSectionProps) {
+  headline,
+  subheadline,
+  ctaText,
+}: HeroProps) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

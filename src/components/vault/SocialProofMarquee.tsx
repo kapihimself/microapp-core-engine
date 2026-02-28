@@ -1,54 +1,17 @@
-interface Testimonial {
-  name: string
-  handle: string
-  quote: string
-}
+import type { TestimonialProps } from "../../lib/types"
 
-const testimonials: Testimonial[] = [
-  {
-    name: "Alex Jensen",
-    handle: "@alexjcodes",
-    quote: "The engine is an absolute game-changer. I spun up a highly animated, polymorphic site in a weekend. The HSL token system is flawless.",
-  },
-  {
-    name: "Sarah Lin",
-    handle: "@sarah_designs",
-    quote: "Finally, a React template that doesn't just look good, but feels physical. The 'Industrial Pop' aesthetic is incredibly premium.",
-  },
-  {
-    name: "Marcus Thorne",
-    handle: "@mthorne",
-    quote: "I've tried a lot of boilerplates, but the strict adherence to the design system here is unmatched. No more overriding random utility classes.",
-  },
-  {
-    name: "Elena Rodriguez",
-    handle: "@elenadev",
-    quote: "The animations are butter-smooth out of the box. Using framer-motion like this shows a deep understanding of UX.",
-  },
-  {
-    name: "David Kim",
-    handle: "@davidk_tech",
-    quote: "Zero slop. Just clean, semantic architecture. The way the Vault components snap together makes me actually enjoy frontend development again.",
-  },
-  {
-    name: "Priya Patel",
-    handle: "@priyaui",
-    quote: "The bento box layouts and the scroll interactions are top-tier. It looks like it took weeks to build, but it's just JSON-driven.",
-  },
-]
-
-export function SocialProofMarquee() {
+export function SocialProofMarquee({
+  sectionTitle,
+  testimonials,
+}: TestimonialProps) {
   const marqueeItems = [...testimonials, ...testimonials]
 
   return (
     <section className="w-full py-24 md:py-32 bg-background border-t-2 border-border overflow-hidden">
       <div className="container px-4 md:px-6 mx-auto mb-12 flex flex-col items-center justify-center text-center space-y-4">
         <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight text-foreground">
-          Loved by Developers
+          {sectionTitle}
         </h2>
-        <p className="max-w-[600px] text-lg text-muted-foreground">
-          See what people are saying about the Microapp Engine's unbreakable design system and architecture.
-        </p>
       </div>
 
       <div className="relative flex w-full flex-col items-center justify-center overflow-hidden">

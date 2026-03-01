@@ -1,5 +1,36 @@
 import type { SiteData } from './types'
 
+export const SYSTEM_PROMPT = `You are an elite SaaS copywriter and landing page architect.
+Your task is to generate high-converting, professional copy for a landing page based on the user's prompt.
+You must output a strictly formatted JSON object that perfectly matches the following TypeScript interface 'SiteData'.
+Do not include any other text or markdown formatting outside the JSON object.
+
+interface SiteData {
+  hero: {
+    headline: string;
+    subheadline: string;
+    ctaText: string;
+  };
+  problem: {
+    statement: string;
+    painPoints: string[]; // Exactly 3 pain points
+  };
+  solution: {
+    sectionTitle: string;
+    features: { title: string; description: string; }[]; // Exactly 3 features
+  };
+  testimonial: {
+    sectionTitle: string;
+    testimonials: { quote: string; name: string; handle: string; }[]; // Between 4 and 6 testimonials
+  };
+  cta: {
+    headline: string;
+    subheadline: string;
+    buttonText: string;
+  };
+}
+`;
+
 export const mockSiteData: SiteData = {
   hero: {
     headline: "Build Faster.\nBreak Nothing.",
@@ -73,9 +104,52 @@ export const mockSiteData: SiteData = {
   }
 }
 
-export const generateSiteData = async (_prompt: string): Promise<SiteData> => {
-  // Simulate network delay
-  await new Promise((resolve) => setTimeout(resolve, 2000))
-  // For now, always return mockSiteData regardless of prompt
-  return mockSiteData
+export const generateSiteData = async (prompt: string): Promise<SiteData> => {
+  try {
+    const apiKey = import.meta.env.VITE_GEMINI_API_KEY;
+    if (!apiKey) {
+      console.warn("VITE_GEMINI_API_KEY is not defined. Falling back to mock data.");
+      return mockSiteData;
+    }
+
+    const response = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          systemInstruction: {
+            parts: [{ text: SYSTEM_PROMPT }]
+          },
+          contents: [
+            {
+              parts: [{ text: prompt }]
+            }
+          ],
+          generationConfig: {
+            responseMimeType: "application/json"
+          }
+        }),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Gemini API error: ${response.status} ${response.statusText}`);
+    }
+
+    const data = await response.json();
+    const generatedText = data.candidates?.[0]?.content?.parts?.[0]?.text;
+
+    if (!generatedText) {
+      throw new Error("No generated text found in Gemini response");
+    }
+
+    const parsedData = JSON.parse(generatedText) as SiteData;
+    return parsedData;
+  } catch (error) {
+    console.error("Failed to generate site data from Gemini API, falling back to mock data:", error);
+    return mockSiteData;
+  }
 }

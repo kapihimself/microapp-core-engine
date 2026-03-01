@@ -72,3 +72,10 @@ export const mockSiteData: SiteData = {
     buttonText: "Get the Engine"
   }
 }
+
+export const generateSiteData = async (_prompt: string): Promise<SiteData> => {
+  // Simulate network delay
+  await new Promise((resolve) => setTimeout(resolve, 2000))
+  // For now, always return mockSiteData regardless of prompt
+  return mockSiteData
+}
